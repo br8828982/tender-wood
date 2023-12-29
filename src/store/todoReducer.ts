@@ -2,12 +2,12 @@ import { Todo, TodoAction, TodoActionTypes } from "../types/TodoTypes";
 
 export const initialTodos: Todo[] = [
   {
-    id: 1,
+    id: 1703879199946,
     text: "Todo 1",
     complete: false,
   },
   {
-    id: 2,
+    id: 1703879214746,
     text: "Todo 2",
     complete: true,
   },

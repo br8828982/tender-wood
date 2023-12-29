@@ -25,7 +25,7 @@ function TodoItem({ todo }: TodoItemProps) {
   };
 
   return (
-    <div>
+    <li>
       <input
         type="checkbox"
         checked={todo.complete}
@@ -49,7 +49,7 @@ function TodoItem({ todo }: TodoItemProps) {
         </>
       )}
       <button onClick={() => onDeleteTodo(todo.id)}>Delete</button>
-    </div>
+    </li>
   );
 }
 
