@@ -13,24 +13,22 @@ export enum TodoActionTypes {
 
 interface AddTodoAction {
   type: TodoActionTypes.ADD;
-  todo: Todo;
+  payload: Pick<Todo, "text">;
 }
 
 interface EditTodoAction {
   type: TodoActionTypes.EDIT;
-  id: number;
-  text: string;
+  payload: Pick<Todo, "id" | "text">;
 }
 
 interface ToggleTodoAction {
   type: TodoActionTypes.TOGGLE;
-  id: number;
-  complete: boolean;
+  payload: Pick<Todo, "id" | "complete">;
 }
 
 interface DeleteTodoAction {
   type: TodoActionTypes.DELETE;
-  id: number;
+  payload: Pick<Todo, "id">;
 }
 
 export type TodoAction =

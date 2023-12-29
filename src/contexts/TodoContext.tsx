@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useReducer } from "react";
-import { Todo, TodoContextType } from "../types/TodoTypes";
+import { TodoContextType } from "../types/TodoTypes";
 import {
   todoReducer,
   initialTodos,
@@ -7,7 +7,6 @@ import {
   editTodo,
   toggleTodo,
   deleteTodo,
-  createNewTodo,
 } from "../store/todoReducer";
 
 export const TodoContext = createContext<TodoContextType | undefined>(
@@ -22,9 +21,7 @@ export const TodoProvider = ({ children }: TodoProviderProps) => {
   const [todos, dispatch] = useReducer(todoReducer, initialTodos);
 
   const onAddTodo = (newText: string) => {
-    const newTodo: Todo = createNewTodo(newText);
-
-    dispatch(addTodo(newTodo));
+    dispatch(addTodo(newText));
   };
 
   const onEditTodo = (todoId: number, newText: string) => {

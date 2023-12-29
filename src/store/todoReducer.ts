@@ -13,58 +13,59 @@ export const initialTodos: Todo[] = [
   },
 ];
 
-export function createNewTodo(text: string): Todo {
-  return {
-    id: new Date().getTime(),
-    text,
-    complete: false,
-  };
-}
-
-export function addTodo(todo: Todo): TodoAction {
+export function addTodo(text: string): TodoAction {
   return {
     type: TodoActionTypes.ADD,
-    todo,
+    payload: { text },
   };
 }
 
 export function editTodo(id: number, text: string): TodoAction {
   return {
     type: TodoActionTypes.EDIT,
-    id,
-    text,
+    payload: { id, text },
   };
 }
 
 export function toggleTodo(id: number, complete: boolean): TodoAction {
   return {
     type: TodoActionTypes.TOGGLE,
-    id,
-    complete,
+    payload: { id, complete },
   };
 }
 
 export function deleteTodo(id: number): TodoAction {
   return {
     type: TodoActionTypes.DELETE,
-    id,
+    payload: { id },
   };
 }
 
 export function todoReducer(state: Todo[], action: TodoAction) {
   switch (action.type) {
     case "ADD":
-      return [...state, action.todo];
+      return [
+        ...state,
+        {
+          id: new Date().getTime(),
+          text: action.payload.text,
+          complete: false,
+        },
+      ];
     case "EDIT":
       return state.map((todo) =>
-        todo.id === action.id ? { ...todo, text: action.text } : todo,
+        todo.id === action.payload.id
+          ? { ...todo, text: action.payload.text }
+          : todo,
       );
     case "TOGGLE":
       return state.map((todo) =>
-        todo.id === action.id ? { ...todo, complete: action.complete } : todo,
+        todo.id === action.payload.id
+          ? { ...todo, complete: action.payload.complete }
+          : todo,
       );
     case "DELETE":
-      return state.filter((todo) => todo.id !== action.id);
+      return state.filter((todo) => todo.id !== action.payload.id);
     default:
       return state;
   }
